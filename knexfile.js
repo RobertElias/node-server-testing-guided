@@ -1,28 +1,39 @@
 module.exports = {
-  development: {
-    client: "sqlite3",
-    connection: {
-      filename: "./data/hobbits.db3",
+    development: {
+        client: "sqlite3",
+        connection: {
+            filename: "./data/hobbits.db3",
+        },
+        useNullAsDefault: true,
+        migrations: {
+            directory: "./data/migrations",
+        },
+        seeds: {
+            directory: "./data/seeds",
+        },
     },
-    useNullAsDefault: true,
-    migrations: {
-      directory: "./data/migrations",
+    testing: {
+        client: "sqlite3",
+        connection: {
+            filename: "./data/test.db3",
+        },
+        useNullAsDefault: true,
+        migrations: {
+            directory: "./data/migrations",
+        },
+        seeds: {
+            directory: "./data/seeds",
+        },
     },
-    seeds: {
-      directory: "./data/seeds",
+    //Heroku will look for production configuration
+    production: {
+        client: 'pg',
+        connection: process.env.DATABASE_URL,
+        migrations: {
+            directory: "./data/migrations",
+        },
+        seeds: {
+            directory: "./data/seeds",
+        },
     },
-  },
-  testing: {
-    client: "sqlite3",
-    connection: {
-      filename: "./data/test.db3",
-    },
-    useNullAsDefault: true,
-    migrations: {
-      directory: "./data/migrations",
-    },
-    seeds: {
-      directory: "./data/seeds",
-    },
-  },
 };
